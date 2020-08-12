@@ -1,6 +1,6 @@
 # symmetrical-journey
 
-# Is it production ready?
+## Is it production ready?
 
 The answer to this question depends on what it means to be production ready. This software **can** definitely run in production. I think what is more important is to understand the quality requirements and see if the software satisfies them and adjust as needed.
 
@@ -10,7 +10,7 @@ If this service needs to go to the market quickly and we have a set of happy cus
 
 Sorry for the "it depends" answer :D
 
-# Possible quality improvements
+## Possible quality improvements
 
 - Pact / OpenAPI
 - IaC + automation (CFN, Terraform, etc.)
