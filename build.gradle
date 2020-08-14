@@ -1,0 +1,59 @@
+buildscript {
+    ext.kotlin_version = '1.3.10' // Required for Kotlin integration
+    ext.aws_sdk_version = '2.13.74'
+    ext.testcontainers_version = '1.14.3'
+    ext.junit_version = '5.1.1'
+    ext.spring_boot_version = '2.1.0.RELEASE'
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version" // Required for Kotlin integration
+        classpath "org.jetbrains.kotlin:kotlin-allopen:$kotlin_version"
+        // See https://kotlinlang.org/docs/reference/compiler-plugins.html#spring-support
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:$spring_boot_version"
+    }
+}
+
+apply plugin: 'kotlin' // Required for Kotlin integration
+apply plugin: "kotlin-spring" // https://kotlinlang.org/docs/reference/compiler-plugins.html#spring-support
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+jar {
+    baseName = 'gs-rest-service'
+    version = '0.1.0'
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version" // Required for Kotlin integration
+    compile "org.springframework.boot:spring-boot-starter-web"
+    compile "software.amazon.awssdk:aws-sdk-java:$aws_sdk_version"
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
+    testCompile 'com.willowtreeapps.assertk:assertk-jvm:0.22'
+    testCompile "org.testcontainers:testcontainers:$testcontainers_version"
+    testCompile "org.testcontainers:localstack:$testcontainers_version"
+    testCompile "com.amazonaws:aws-java-sdk:1.11.840" // Required for localstack :(
+    testImplementation "org.testcontainers:junit-jupiter:$testcontainers_version"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$junit_version"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junit_version"
+}
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
+compileKotlin {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+test {
+    useJUnitPlatform()
+}
