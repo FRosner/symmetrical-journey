@@ -46,6 +46,7 @@ Please find some bullet points for possible improvements below.
 - Static code analysis / quality checks / linting
 - Authentication and authorization (e.g. only mark your own assets as uploaded)
 - Only allow status updates for existing assets (rn this is not handled)
+- Input parameter validation (rn timeout -1 is valid)
 
 ## Remarks
 
