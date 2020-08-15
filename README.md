@@ -13,7 +13,7 @@ request a time expiring URL to retrieve that asset.
 - `curl -v -T README.md -H 'Content-Type: text/plain' '<presignedPutUrl>'`
 - `curl -XPUT -d 'uploaded' -H 'Content-Type: text/plain' 'localhost:8080/assets/<assetId>/status'`
 - `curl -XGET 'localhost:8080/assets/<assetId>?timeout=60'`
-- `curl -XGET '<presignedGetUrl>`
+- `curl -XGET '<presignedGetUrl>'`
 
 ## Is it production ready?
 
