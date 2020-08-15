@@ -32,7 +32,7 @@ class S3ClientTest {
     fun presignPut() {
         val s3Service = S3Service() // FIXME here I'd have to pass the presigner but it's SDK 2 but localstack has SDK 1...
         val keyName = UUID.randomUUID().toString()
-        val presignedUrl = s3Service.generatePresignedUrlForGet(bucketName, keyName, Duration.ofMinutes(1))
+        val presignedUrl = s3Service.generatePresignedUrlForPut(bucketName, keyName, "text/plain", Duration.ofMinutes(1))
 
         assertThat(presignedUrl).isNotNull()
         /*
@@ -47,6 +47,18 @@ class S3ClientTest {
         out.close()
 
         assertThat(connection.responseCode).isEqualTo(200)
+        */
+    }
+
+    @Test
+    fun presignGet() {
+        val s3Service = S3Service() // FIXME here I'd have to pass the presigner but it's SDK 2 but localstack has SDK 1...
+        val keyName = UUID.randomUUID().toString()
+        val presignedUrl = s3Service.generatePresignedUrlForGet(bucketName, keyName, Duration.ofMinutes(1))
+
+        assertThat(presignedUrl).isNotNull()
+        /*
+            FIXME actually use URL to download but it only works if presigner is setup correctly to point to localstack (see above)
         */
     }
 

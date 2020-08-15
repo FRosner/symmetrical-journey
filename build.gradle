@@ -33,8 +33,12 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version" // Required for Kotlin integration
     compile "org.springframework.boot:spring-boot-starter-web"
     compile "software.amazon.awssdk:aws-sdk-java:$aws_sdk_version"
-    testCompile 'org.springframework.boot:spring-boot-starter-test'
+    testCompile('org.springframework.boot:spring-boot-starter-test') {
+        exclude module: "junit"
+        exclude module: "mockit-core"
+    }
     testCompile 'com.willowtreeapps.assertk:assertk-jvm:0.22'
+    testCompile 'io.mockk:mockk:1.10.0'
     testCompile "org.testcontainers:testcontainers:$testcontainers_version"
     testCompile "org.testcontainers:localstack:$testcontainers_version"
     testCompile "com.amazonaws:aws-java-sdk:1.11.840" // Required for localstack :(
