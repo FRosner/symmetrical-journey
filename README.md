@@ -46,6 +46,8 @@ Sorry for the "it depends" answer :D Nevertheless, please find some bullet point
 - Put signature duration configurable
 - Better test coverage
 - Static code analysis / quality checks / linting
+- Authentication and authorization (e.g. only mark your own assets as uploaded)
+- Only allow status updates for existing assets (rn this is not handled)
 
 ## Remarks
 
